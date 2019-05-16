@@ -27,7 +27,7 @@ After preparing your inputs and corresponding outputs, you can call the `Train` 
 
 There's currently two train methods, one that is a standard back propagation and the other uses SGD learning algorithm.
 
-The sample code is learning the network to classify the MNIST digits.
+The sample code is teaching a network to classify the MNIST digits.
 
 Here's my output after I ran it:
 
@@ -69,3 +69,5 @@ Here's my output after I ran it:
 
 It achieved a total of 97.63% success rate after 30 epochs of training. It could achieve more by slightly changing the hyper parameters or by training for more epochs.
 
+You can also save the network in a JSON file by calling `net.SaveFile("fileName");`, the function will return true if succeeded.
+Then you can load the network later on by calling `FeedForwardNeuralNet network = FeedForwardNeuralNet.Load("fileName");`
