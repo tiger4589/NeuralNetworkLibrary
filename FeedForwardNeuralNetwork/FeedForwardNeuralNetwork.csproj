@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\FeedForwardNeuralNetwork.cs" />
+    <Compile Include="Core\FeedForwardNeuralNet.cs" />
     <Compile Include="Core\Layer.cs" />
     <Compile Include="Core\Neuron.cs" />
     <Compile Include="Core\Weight.cs" />

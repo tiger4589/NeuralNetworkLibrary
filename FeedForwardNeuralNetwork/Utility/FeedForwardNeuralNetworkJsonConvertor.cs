@@ -1,16 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using FeedForwardNeuralNetwork.Core;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using FeedForwardNeuralNetwork = FeedForwardNeuralNetwork.Core.FeedForwardNeuralNetwork;
 
 namespace FeedForwardNeuralNetwork.Utility
 {
     internal class FeedForwardNeuralNetworkJsonConvertor : JsonConverter
     {
-        private Core.FeedForwardNeuralNetwork _network;
+        private FeedForwardNeuralNet _net;
         private string _data;
 
         public FeedForwardNeuralNetworkJsonConvertor(string data)
@@ -18,69 +17,69 @@ namespace FeedForwardNeuralNetwork.Utility
             _data = data;
         }
 
-        public FeedForwardNeuralNetworkJsonConvertor(Core.FeedForwardNeuralNetwork network)
+        public FeedForwardNeuralNetworkJsonConvertor(FeedForwardNeuralNet net)
         {
-            _network = network;
+            _net = net;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            int inputLayerNeuronsCount = _network.InputLayer.Neurons.Length;
+            int inputLayerNeuronsCount = _net.InputLayer.Neurons.Length;
             JArray inputNeurons = new JArray();
             for (int i = 0; i < inputLayerNeuronsCount; i++)
             {
-                inputNeurons.Add(_network.InputLayer.Neurons[i].Bias);
-                inputNeurons.Add(_network.InputLayer.Neurons[i].Delta);
-                inputNeurons.Add(_network.InputLayer.Neurons[i].Value);
+                inputNeurons.Add(_net.InputLayer.Neurons[i].Bias);
+                inputNeurons.Add(_net.InputLayer.Neurons[i].Delta);
+                inputNeurons.Add(_net.InputLayer.Neurons[i].Value);
                 JArray inputDendrite = new JArray();
-                for (int j = 0; j < _network.InputLayer.Neurons[i].Weights.Length; j++)
+                for (int j = 0; j < _net.InputLayer.Neurons[i].Weights.Length; j++)
                 {
-                    inputDendrite.Add(_network.InputLayer.Neurons[i].Weights[j].Value);
+                    inputDendrite.Add(_net.InputLayer.Neurons[i].Weights[j].Value);
                 }
                 inputNeurons.Add(inputDendrite);
             }
             JArray inputLayerObject = new JArray { { inputNeurons } };
 
-            int hiddenLayerNeuronsCount = _network.HiddenLayer.Neurons.Length;
+            int hiddenLayerNeuronsCount = _net.HiddenLayer.Neurons.Length;
             JArray hiddenNeurons = new JArray();
             for (int i = 0; i < hiddenLayerNeuronsCount; i++)
             {
-                hiddenNeurons.Add(_network.HiddenLayer.Neurons[i].Bias);
-                hiddenNeurons.Add(_network.HiddenLayer.Neurons[i].Delta);
-                hiddenNeurons.Add(_network.HiddenLayer.Neurons[i].Value);
+                hiddenNeurons.Add(_net.HiddenLayer.Neurons[i].Bias);
+                hiddenNeurons.Add(_net.HiddenLayer.Neurons[i].Delta);
+                hiddenNeurons.Add(_net.HiddenLayer.Neurons[i].Value);
                 JArray hiddenDendrite = new JArray();
-                for (int j = 0; j < _network.HiddenLayer.Neurons[i].Weights.Length; j++)
+                for (int j = 0; j < _net.HiddenLayer.Neurons[i].Weights.Length; j++)
                 {
-                    hiddenDendrite.Add(_network.HiddenLayer.Neurons[i].Weights[j].Value);
+                    hiddenDendrite.Add(_net.HiddenLayer.Neurons[i].Weights[j].Value);
                 }
                 hiddenNeurons.Add(hiddenDendrite);
             }
             JArray hiddenLayerObject = new JArray { { hiddenNeurons } };
 
 
-            int outputLayerNeuronsCount = _network.OutputLayer.Neurons.Length;
+            int outputLayerNeuronsCount = _net.OutputLayer.Neurons.Length;
             JArray outputNeurons = new JArray();
             for (int i = 0; i < outputLayerNeuronsCount; i++)
             {
-                outputNeurons.Add(_network.OutputLayer.Neurons[i].Bias);
-                outputNeurons.Add(_network.OutputLayer.Neurons[i].Delta);
-                outputNeurons.Add(_network.OutputLayer.Neurons[i].Value);
+                outputNeurons.Add(_net.OutputLayer.Neurons[i].Bias);
+                outputNeurons.Add(_net.OutputLayer.Neurons[i].Delta);
+                outputNeurons.Add(_net.OutputLayer.Neurons[i].Value);
                 JArray outputDendrite = new JArray();
-                for (int j = 0; j < _network.OutputLayer.Neurons[i].Weights.Length; j++)
+                for (int j = 0; j < _net.OutputLayer.Neurons[i].Weights.Length; j++)
                 {
-                    outputDendrite.Add(_network.OutputLayer.Neurons[i].Weights[j].Value);
+                    outputDendrite.Add(_net.OutputLayer.Neurons[i].Weights[j].Value);
                 }
                 outputNeurons.Add(outputDendrite);
             }
             JArray outputLayerObject = new JArray() { { outputNeurons } };
 
-            JObject networkObject = new JObject { { "Network", new JArray { inputLayerObject, hiddenLayerObject, outputLayerObject } }, { "LearningRate", _network.LearningRate } };
+            JObject networkObject = new JObject { { "Network", new JArray { inputLayerObject, hiddenLayerObject, outputLayerObject } }, { "LearningRate", _net.LearningRate } };
 
 
             networkObject.WriteTo(writer);
         }
 
-        public Core.FeedForwardNeuralNetwork DeserializeData()
+        public FeedForwardNeuralNet DeserializeData()
         {
             JObject json = JObject.Parse(_data);
 
@@ -159,7 +158,7 @@ namespace FeedForwardNeuralNetwork.Utility
             double learningRate = (double)json["LearningRate"];
             /***********************Learning Rate*******************************/
 
-            Core.FeedForwardNeuralNetwork net = new Core.FeedForwardNeuralNetwork(inputLayer, hiddenLayer, outputLayer, learningRate);
+            FeedForwardNeuralNet net = new FeedForwardNeuralNet(inputLayer, hiddenLayer, outputLayer, learningRate);
             return net;
         }
 
