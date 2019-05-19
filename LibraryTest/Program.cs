@@ -10,7 +10,8 @@ namespace LibraryTest
     {
         static void Main(string[] args)
         {
-            FeedForwardTest.FeedForwardNetworkTest();
+           // FeedForwardTest.FeedForwardNetworkTest();
+            HopfieldTest.HopefieldNeuralNetworkTest();
         }
     }
 }

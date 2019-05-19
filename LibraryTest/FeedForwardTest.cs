@@ -29,7 +29,7 @@ namespace LibraryTest
             bool isFileSaved = net.SaveFile("mnist.txt");
             if (isFileSaved)
                 Console.WriteLine("mnist.txt file has been successfully saved!");
-
+            
             Console.ReadKey();
         }
 

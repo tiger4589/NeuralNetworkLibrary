@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A70A63F3-56FA-4101-BC20-954FCA65A16A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>LibraryTest</RootNamespace>
-    <AssemblyName>LibraryTest</AssemblyName>
+    <ProjectGuid>{C67CFD5B-EE5E-4A6F-84E6-942676065E52}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HopfieldNetwork</RootNamespace>
+    <AssemblyName>HopfieldNetwork</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,38 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeedForwardTest.cs" />
-    <Compile Include="HopfieldTest.cs" />
-    <Compile Include="MnistReader\Extensions.cs" />
-    <Compile Include="MnistReader\Image.cs" />
-    <Compile Include="MnistReader\MnistReader.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Core\Connection.cs" />
+    <Compile Include="Core\HopfieldNeuralNetwork.cs" />
+    <Compile Include="Core\Neuron.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <Content Include="mnist\t10k-images.idx3-ubyte">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mnist\t10k-labels.idx1-ubyte">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mnist\train-images.idx3-ubyte">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="mnist\train-labels.idx1-ubyte">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FeedForwardNeuralNetwork\FeedForwardNeuralNetwork.csproj">
-      <Project>{57f4a8cf-03b6-4cf4-a07d-b4cf9e0acf13}</Project>
-      <Name>FeedForwardNeuralNetwork</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HopfieldNetwork\HopfieldNetwork.csproj">
-      <Project>{C67CFD5B-EE5E-4A6F-84E6-942676065E52}</Project>
-      <Name>HopfieldNetwork</Name>
-    </ProjectReference>
+    <Compile Include="Utility\Utilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
