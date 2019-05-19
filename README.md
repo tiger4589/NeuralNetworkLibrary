@@ -55,5 +55,13 @@ It achieved a total of 97.63% success rate after 30 epochs of training. It could
 
 # Change Log:
 
-    1.0.0 Added Feed Forward Neural Network
-    1.1.0 Added Hopfield Neural Network
+**Version 1.1.0**
+
+    Added Hopfield Neural Network
+
+**Version 1.0.0**
+
+    Added Feed Forward Neural Network
+    
+ 
+    
