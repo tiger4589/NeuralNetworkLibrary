@@ -5,7 +5,7 @@ C# Machine Learning library - Will be updated as long as I am learning and exper
 
 To Install:
 
->Install-Package NeuralNetwork.Library -Version 1.1.0
+>Install-Package NeuralNetwork.Library -Version 1.1.2
 
 ---
 
@@ -55,6 +55,10 @@ It achieved a total of 97.63% success rate after 30 epochs of training. It could
 
 # Change Log:
 
+**Version 1.1.2**
+
+    Fixed a problem with nuget package installation
+    
 **Version 1.1.0**
 
     Added Hopfield Neural Network
